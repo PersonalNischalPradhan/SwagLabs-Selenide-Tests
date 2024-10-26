@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Swag Labs Automation Test" >
+    <listeners>
+        <listener class-name="listeners.CustomListener"/>
+    </listeners>
+
+    <test name="E2E">
+        <classes>
+            <class name="e2e.PlaceOrderFromPDPage"/>
+            <class name="e2e.PlaceOrderWithStandardUserAddingAllItems"/>
+            <class name="e2e.PlaceOrderWithGlitchUserAddingAllItems"/>
+            <class name="e2e.PlaceOrderWithProblemUserAddingAllItems"/>
+        </classes>
+    </test>
+    <test name="FunctionalTestCases">
+        <classes>
+            <class name="functional.UserAuthenticationTesting"/>
+            <class name="functional.NegativePlacingOrderWithoutFillingTheCheckoutDetails"/>
+            <class name="functional.ValidateProductDetailsAndComparePrice"/>
+            <class name="functional.VerifySortingFunctionality"/>
+        </classes>
+    </test>
+</suite>
