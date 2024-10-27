@@ -24,7 +24,14 @@ public class BaseTest {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
+        Configuration.headless = true;
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--window-size=1366,768");
         options.addArguments("--password-store=basic");
         options.setExperimentalOption("prefs",
                 Map.of(
@@ -39,7 +46,6 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        // Close the browser after each test method
         closeWebDriver();
     }
 }
