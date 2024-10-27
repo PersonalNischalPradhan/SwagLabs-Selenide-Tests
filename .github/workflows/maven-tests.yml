@@ -40,9 +40,12 @@ jobs:
 
       - name: Install Allure
         run: |
+          echo "Downloading Allure..."
           wget -qO allure.zip "https://github.com/allure-framework/allure2/releases/latest/download/allure-2.18.1.zip"
-          unzip allure.zip -d /opt
-          sudo ln -s /opt/allure-2.18.1/bin/allure /usr/bin/allure
+          echo "Unzipping Allure..."
+          unzip allure.zip -d /opt || { echo "Failed to unzip Allure"; exit 1; }
+          echo "Creating symlink for Allure..."
+          sudo ln -s /opt/allure-2.18.1/bin/allure /usr/bin/allure || { echo "Failed to create symlink"; exit 1; }
 
       - name: Generate Allure report
         run: allure generate target/allure-results --clean -o allure-report
