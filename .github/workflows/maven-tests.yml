@@ -41,14 +41,19 @@ jobs:
       - name: Install Allure
         run: |
           echo "Downloading Allure..."
-          wget -qO allure.zip "https://github.com/allure-framework/allure2/releases/latest/download/allure-2.18.1.zip"
-          echo "Unzipping Allure..."
-          unzip allure.zip -d /opt || { echo "Failed to unzip Allure"; exit 1; }
-          echo "Creating symlink for Allure..."
-          sudo ln -s /opt/allure-2.18.1/bin/allure /usr/bin/allure || { echo "Failed to create symlink"; exit 1; }
-
+          wget -qO allure.zip "https://github.com/allure-framework/allure2/releases/latest/download/allure-2.18.1.zip" || { echo "Failed to download Allure"; exit 1; }
+          
+          if [[ -s allure.zip ]]; then
+              echo "Unzipping Allure..."
+              unzip allure.zip -d /opt || { echo "Failed to unzip Allure"; exit 1; }
+              echo "Creating symlink for Allure..."
+              sudo ln -s /opt/allure-2.18.1/bin/allure /usr/bin/allure || { echo "Failed to create symlink"; exit 1; }
+          else
+              echo "Allure download failed or the file is empty."
+              exit 1
+          fi
       - name: Generate Allure report
-        run: allure generate target/allure-results --clean -o allure-report
+        run: allure generate target/allure-results --clean -o allure-report || { echo "Failed to generate Allure report"; exit 1; }
 
       - name: Upload Allure report as artifact
         uses: actions/upload-artifact@v3
