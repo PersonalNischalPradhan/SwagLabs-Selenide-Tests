@@ -8,6 +8,7 @@ public class KeywordManager {
     public YourCartPage yourCartPage;
     public CheckoutOverviewPage checkoutOverviewPage;
     public  CheckoutInfoPage checkoutInfoPage;
+
     public KeywordManager(){
       this.loginPage= new LoginPage();
       this.homePage=new HomePage();
