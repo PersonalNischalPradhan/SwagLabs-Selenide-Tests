@@ -7,11 +7,18 @@
 
     <test name="E2E">
         <classes>
+            <class name="e2e.PlaceOrderFromPDPage"/>
+            <class name="e2e.PlaceOrderWithStandardUserAddingAllItems"/>
+            <class name="e2e.PlaceOrderWithGlitchUserAddingAllItems"/>
+            <class name="e2e.PlaceOrderWithProblemUserAddingAllItems"/>
         </classes>
     </test>
     <test name="FunctionalTestCases">
         <classes>
             <class name="functional.UserAuthenticationTesting"/>
+            <class name="functional.NegativePlacingOrderWithoutFillingTheCheckoutDetails"/>
+            <class name="functional.ValidateProductDetailsAndComparePrice"/>
+            <class name="functional.VerifySortingFunctionality"/>
         </classes>
     </test>
 </suite>
