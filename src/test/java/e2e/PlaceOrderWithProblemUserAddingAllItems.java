@@ -25,15 +25,10 @@ public class PlaceOrderWithProblemUserAddingAllItems extends BaseTest {
     @Epic("Swag Labs")
     @Description("Place order with allowed items present with a problem user")
     @Test
-    public void addProductsToBasketProblemUser() {
+    public void addProductsToBasketProblemUser() throws InterruptedException {
         keywordManager.loginPage.login(problem_user,valid_password);
         Selenide.sleep(4000);
-        keywordManager.homePage.addToBasket("6");
-        keywordManager.homePage.addToBasket("5");
-        keywordManager.homePage.addToBasket("4");
-        keywordManager.homePage.addToBasket("3");
-        keywordManager.homePage.addToBasket("2");
-        keywordManager.homePage.addToBasket("1");
+        keywordManager.homePage.addAllItemsToBasket();
         validateBasketCount();
         Selenide.sleep(2000);
         keywordManager.homePage.clickOnBasketIcon();

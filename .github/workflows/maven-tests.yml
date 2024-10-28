@@ -72,6 +72,6 @@ jobs:
           name: allure-report
           path: allure-report
           if-no-files-found: warn
-          include-hidden-files: false
+          retention-days: 30
         env:
           ACTIONS_STEP_DEBUG: true

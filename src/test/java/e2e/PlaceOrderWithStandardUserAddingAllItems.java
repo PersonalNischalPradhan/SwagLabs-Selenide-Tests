@@ -28,15 +28,10 @@ public class PlaceOrderWithStandardUserAddingAllItems extends BaseTest {
     @Epic("Swag Labs")
     @Description("Place order with all the items present with a standard user")
     @Test
-    public void addProductsToBasketStdUser() {
+    public void addProductsToBasketStdUser() throws InterruptedException {
         keywordManager.loginPage.login(standard_username,valid_password);
         Selenide.sleep(4000);
-        keywordManager.homePage.addToBasket("6");
-        keywordManager.homePage.addToBasket("5");
-        keywordManager.homePage.addToBasket("4");
-        keywordManager.homePage.addToBasket("3");
-        keywordManager.homePage.addToBasket("2");
-        keywordManager.homePage.addToBasket("1");
+        keywordManager.homePage.addAllItemsToBasket();
         validateBasketCount();
         Selenide.sleep(2000);
         keywordManager.homePage.clickOnBasketIcon();
